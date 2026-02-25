@@ -62,11 +62,6 @@
     background: var(--dark); color: var(--yellow);
     border-radius: 12px; padding: 7px 14px; font-size: 13px; font-weight: 700;
   }
-  .p1 .process-hint {
-    background: var(--white); color: var(--dark);
-    border-radius: 12px; padding: 10px 14px; font-size: 11px; font-weight: 700;
-    margin-bottom: 12px; border: 2px solid var(--dark); line-height: 1.4;
-  }
   .p1 .cta {
     background: var(--dark); color: var(--yellow); border-radius: 50px;
     padding: 10px 20px; font-family: 'Boogaloo', cursive; font-size: 18px;
@@ -81,6 +76,11 @@
     margin-bottom: 8px; font-size: 11.5px; font-weight: 700; color: var(--dark); line-height: 1.4;
   }
   .p2 .school-type strong { font-family: 'Boogaloo', cursive; font-size: 15px; color: var(--pink); display: block; margin-bottom: 2px; }
+  .p2 .process-hint {
+    background: var(--yellow); color: var(--dark);
+    border-radius: 12px; padding: 10px 14px; font-size: 11px; font-weight: 700;
+    margin-bottom: 10px; border: 2px solid var(--dark); line-height: 1.4;
+  }
   .p2 .contact-box {
     background: var(--dark); color: var(--yellow); border-radius: 16px;
     padding: 14px; font-size: 12px; font-weight: 700; margin-top: auto; line-height: 1.8;
@@ -195,11 +195,11 @@
     <h2>Wer sind<br>wir?</h2>
     <div class="info-blob">
       <strong>Die Meldestelle</strong>
-      Wir sind die zentrale Anlaufstelle für den Übergang von der allgemeinbildenden Schule in die Berufsbildenden Schulen in Stuttgart.
+      Wir sind die zentrale Anlaufstelle für den Übergang von der Sekundarstufe I in die Berufsschule in Stuttgart.
     </div>
     <div class="info-blob">
       <strong>Für wen?</strong>
-      Für alle Jugendlichen zwischen 15 und 18 Jahren aus Stuttgart und Leinfelden-Echterdingen.
+      Für alle Stuttgarter Jugendlichen zwischen 15 und 18 Jahren ohne festen Plan für die Zeit nach der Schule.
     </div>
     <div class="info-blob">
       <strong>Was wir machen</strong>
@@ -214,7 +214,7 @@
     <h2>Unsere<br>Schultypen</h2>
     <div class="school-type">
       <strong>AVdual</strong>
-      Hauptschulabschluss machen oder nachholen + Berufsorientierung mit Praktika.
+      Schulabschluss nachholen + Berufsorientierung mit Praktika.
     </div>
     <div class="school-type">
       <strong>VABO</strong>
@@ -223,6 +223,9 @@
     <div class="school-type" style="border-left: 4px solid var(--red);">
       <strong>Jungarbeiterklasse</strong>
       Keine Anmeldung möglich – greift automatisch für berufsschulpflichtige Jugendliche ohne Schul- oder Ausbildungsplatz.
+    </div>
+    <div class="process-hint">
+      ⚠️ Wir leiten Deine Anfrage weiter – die verbindliche Anmeldung erfolgt dann direkt mit der Schule.
     </div>
     <div class="contact-box">
       <div class="contact-title">Kontakt</div>
@@ -248,9 +251,6 @@
       <div class="option">Schulabschluss nachholen?</div>
       <div class="option">Deutsch lernen?</div>
       <div class="option">Noch keinen Plan?</div>
-    </div>
-    <div class="process-hint">
-      ⚠️ Wir leiten Deine Anfrage weiter – die verbindliche Anmeldung erfolgt dann direkt mit der Schule.
     </div>
     <div class="cta">Wir helfen Dir! →</div>
   </div>

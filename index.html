@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meldestelle Berufsbildende Schulen Stuttgart</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Boogaloo&display=swap');
+  :root {
+    --pink: #FF3D9A; --yellow: #FFE600; --red: #FF3B30;
+    --dark: #1A1A1A; --white: #FFFFFF; --light-pink: #FFB3D9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #f0f0f0;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 30px 20px; gap: 20px;
+  }
+  .print-hint {
+    background: #333; color: white; padding: 10px 20px;
+    border-radius: 8px; font-size: 13px; margin-bottom: 10px; text-align: center;
+  }
+  .flyer-row {
+    display: flex; background: white;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+  }
+  .panel {
+    width: 297px; min-height: 420px; position: relative;
+    overflow: hidden; display: flex; flex-direction: column;
+    padding: 24px 20px; border-right: 2px dashed #ccc;
+  }
+  .panel:last-child { border-right: none; }
+  .deco-circle {
+    position: absolute; border-radius: 50%; opacity: 0.15; pointer-events: none;
+  }
+  .row-label { font-size: 12px; color: #666; text-align: center; width: 100%; margin-top: -14px; margin-bottom: 6px; }
+
+  /* COVER - Panel 1 */
+  .p1 { background: var(--yellow); }
+  .p1 .starburst {
+    position: absolute; top: -10px; right: -10px;
+    width: 140px; height: 140px; background: var(--pink);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Boogaloo', cursive; font-size: 32px; color: white; z-index: 2;
+    font-weight: 900;
+  }
+  .p1 .tag {
+    background: var(--red); color: white; font-family: 'Boogaloo', cursive;
+    font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 4px;
+    display: inline-block; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .p1 h1 { font-family: 'Boogaloo', cursive; font-size: 44px; color: var(--dark); line-height: 1; margin-bottom: 10px; }
+  .p1 .subtitle { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 18px; }
+  .p1 .question-bubble {
+    background: var(--pink); color: white; border-radius: 20px 20px 20px 4px;
+    padding: 12px 16px; font-size: 15px; font-weight: 900; font-family: 'Boogaloo', cursive; margin-bottom: 14px;
+  }
+  .p1 .options { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+  .p1 .option {
+    background: var(--dark); color: var(--yellow);
+    border-radius: 12px; padding: 7px 14px; font-size: 13px; font-weight: 700;
+  }
+  .p1 .process-hint {
+    background: var(--white); color: var(--dark);
+    border-radius: 12px; padding: 10px 14px; font-size: 11px; font-weight: 700;
+    margin-bottom: 12px; border: 2px solid var(--dark); line-height: 1.4;
+  }
+  .p1 .cta {
+    background: var(--dark); color: var(--yellow); border-radius: 50px;
+    padding: 10px 20px; font-family: 'Boogaloo', cursive; font-size: 18px;
+    text-align: center; margin-top: auto;
+  }
+
+  /* PANEL 2 */
+  .p2 { background: var(--pink); }
+  .p2 h2 { font-family: 'Boogaloo', cursive; font-size: 30px; color: white; line-height: 1; margin-bottom: 10px; }
+  .p2 .school-type {
+    background: white; border-radius: 10px; padding: 8px 12px;
+    margin-bottom: 8px; font-size: 11.5px; font-weight: 700; color: var(--dark); line-height: 1.4;
+  }
+  .p2 .school-type strong { font-family: 'Boogaloo', cursive; font-size: 15px; color: var(--pink); display: block; margin-bottom: 2px; }
+  .p2 .contact-box {
+    background: var(--dark); color: var(--yellow); border-radius: 16px;
+    padding: 14px; font-size: 12px; font-weight: 700; margin-top: auto; line-height: 1.8;
+  }
+  .p2 .contact-box .contact-title { font-family: 'Boogaloo', cursive; font-size: 20px; color: white; margin-bottom: 6px; }
+
+  /* PANEL 3 */
+  .p3 { background: var(--dark); }
+  .p3 h2 { font-family: 'Boogaloo', cursive; font-size: 36px; color: var(--yellow); margin-bottom: 14px; line-height: 1; }
+  .p3 .info-blob {
+    background: var(--pink); border-radius: 16px; padding: 12px 14px;
+    margin-bottom: 10px; font-size: 12.5px; color: white; font-weight: 700; line-height: 1.5;
+  }
+  .p3 .info-blob strong { font-family: 'Boogaloo', cursive; font-size: 17px; display: block; margin-bottom: 4px; color: var(--yellow); }
+  .p3 .big-text { font-family: 'Boogaloo', cursive; font-size: 22px; color: white; margin-top: 12px; line-height: 1.3; }
+
+  /* PANEL 4 */
+  .p4 { background: var(--light-pink); }
+  .p4 h2 { font-family: 'Boogaloo', cursive; font-size: 38px; color: var(--dark); line-height: 1; margin-bottom: 6px; }
+  .p4 .badge {
+    background: var(--pink); color: white; border-radius: 8px; padding: 4px 10px;
+    font-size: 11px; font-weight: 900; text-transform: uppercase; display: inline-block; margin-bottom: 10px;
+  }
+  .p4 .desc {
+    background: white; border-radius: 14px; padding: 12px 14px;
+    font-size: 12.5px; font-weight: 700; color: var(--dark); margin-bottom: 10px; line-height: 1.5;
+  }
+  .p4 .checklist { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .p4 .checklist li {
+    background: var(--dark); color: var(--yellow);
+    border-radius: 10px; padding: 6px 12px; font-size: 12px; font-weight: 700;
+  }
+  .p4 .checklist li::before { content: '✗ '; color: var(--red); font-size: 13px; }
+  .p4 .action {
+    background: var(--pink); color: white; border-radius: 12px;
+    padding: 10px 14px; font-size: 12px; font-weight: 700; margin-top: 10px; line-height: 1.6;
+  }
+
+  /* PANEL 5 */
+  .p5 { background: var(--yellow); }
+  .p5 h2 { font-family: 'Boogaloo', cursive; font-size: 38px; color: var(--dark); line-height: 1; margin-bottom: 6px; }
+  .p5 .badge {
+    background: var(--dark); color: var(--yellow); border-radius: 8px; padding: 4px 10px;
+    font-size: 11px; font-weight: 900; text-transform: uppercase; display: inline-block; margin-bottom: 10px;
+  }
+  .p5 .desc {
+    background: var(--pink); color: white; border-radius: 14px;
+    padding: 12px 14px; font-size: 12.5px; font-weight: 700; margin-bottom: 10px; line-height: 1.5;
+  }
+  .p5 .step {
+    background: var(--dark); color: white; border-radius: 10px;
+    padding: 8px 12px; font-size: 12px; font-weight: 700; margin-bottom: 6px;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .p5 .step-num {
+    background: var(--yellow); color: var(--dark); border-radius: 50%;
+    width: 22px; height: 22px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Boogaloo', cursive; font-size: 14px; font-weight: 700;
+  }
+  .p5 .url-box {
+    background: var(--pink); color: white; border-radius: 12px;
+    padding: 10px 14px; font-size: 11px; font-weight: 700; margin-top: 8px;
+    text-align: center; word-break: break-all; line-height: 1.7;
+  }
+
+  /* PANEL 6 */
+  .p6 { background: var(--red); }
+  .p6 h2 { font-family: 'Boogaloo', cursive; font-size: 30px; color: white; line-height: 1.1; margin-bottom: 8px; }
+  .p6 .badge {
+    background: white; color: var(--red); border-radius: 8px; padding: 4px 10px;
+    font-size: 11px; font-weight: 900; text-transform: uppercase; display: inline-block; margin-bottom: 10px;
+  }
+  .p6 .desc {
+    background: var(--dark); color: var(--yellow); border-radius: 14px;
+    padding: 12px 14px; font-size: 12px; font-weight: 700; margin-bottom: 10px; line-height: 1.5;
+  }
+  .p6 .desc strong { color: white; }
+  .p6 .support-box {
+    background: white; border-radius: 14px; padding: 12px 14px;
+    font-size: 12px; font-weight: 700; color: var(--dark); margin-bottom: 10px; line-height: 1.5;
+  }
+  .p6 .support-box strong {
+    font-family: 'Boogaloo', cursive; font-size: 15px; color: var(--red); display: block; margin-bottom: 4px;
+  }
+  .p6 .cta-big {
+    font-family: 'Boogaloo', cursive; font-size: 22px; color: var(--yellow);
+    text-align: center; margin-top: auto; padding: 12px;
+    background: rgba(0,0,0,0.25); border-radius: 16px;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .print-hint, .row-label { display: none; }
+    .flyer-row { box-shadow: none; page-break-after: always; }
+  }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<div class="print-hint">
+  🖨️ Druckhinweis: Strg+P drücken. Beide Zeilen auf je ein A4-Blatt drucken – dann falten!
+</div>
+
+<p class="row-label">AUSSENSEITEN: Panel 1 links · Panel 2 mitte · Panel 3 = Cover rechts</p>
+<div class="flyer-row">
+
+  <!-- PANEL 3: Wer sind wir -->
+  <div class="panel p3">
+    <div class="deco-circle" style="width:160px;height:160px;background:var(--yellow);top:-60px;right:-60px;"></div>
+    <h2>Wer sind<br>wir?</h2>
+    <div class="info-blob">
+      <strong>Die Meldestelle</strong>
+      Wir sind die zentrale Anlaufstelle für den Übergang von der Sekundarstufe I in die Berufsschule in Stuttgart.
+    </div>
+    <div class="info-blob">
+      <strong>Für wen?</strong>
+      Für alle Stuttgarter Jugendlichen zwischen 15 und 18 Jahren ohne festen Plan für die Zeit nach der Schule.
+    </div>
+    <div class="info-blob">
+      <strong>Was wir machen</strong>
+      Wir nehmen Anfragen für AVdual und VABO entgegen. Hauptschulabschluss nachholen oder verbessern? Bei uns geht das!
+    </div>
+    <p class="big-text">Dein nächster<br>Schritt beginnt<br>hier. 💛</p>
+  </div>
+
+  <!-- PANEL 2: Schultypen + Kontakt -->
+  <div class="panel p2">
+    <div class="deco-circle" style="width:120px;height:120px;background:var(--yellow);bottom:-30px;left:-30px;"></div>
+    <h2>Unsere<br>Schultypen</h2>
+    <div class="school-type">
+      <strong>AVdual</strong>
+      Schulabschluss nachholen + Berufsorientierung mit Praktika.
+    </div>
+    <div class="school-type">
+      <strong>VABO</strong>
+      Neu in Stuttgart oder aus einer VKL? Deutsch lernen bis B1. Danach meist Übergang ins AVdual.
+    </div>
+    <div class="school-type" style="border-left: 4px solid var(--red);">
+      <strong>Jungarbeiterklasse</strong>
+      Keine Anmeldung möglich – greift automatisch für berufsschulpflichtige Jugendliche ohne Schul- oder Ausbildungsplatz.
+    </div>
+    <div class="contact-box">
+      <div class="contact-title">Kontakt</div>
+      📍 Leobener Str. 97, 70469 Stuttgart<br>
+      📞 0711 – 216 60277<br>
+      ✉️ meldestelle-bs@stuttgart.de
+    </div>
+  </div>
+
+  <!-- PANEL 1: COVER -->
+  <div class="panel p1">
+    <div class="starburst">15–18</div>
+    <div style="margin-top:20px;">
+      <span class="tag">Stadt Stuttgart</span>
+    </div>
+    <h1>Melde<br>stelle!</h1>
+    <p class="subtitle">Berufsbildende Schulen Stuttgart</p>
+    <div class="question-bubble">
+      Was kommt nach der Schule – für Dich?
+    </div>
+    <div class="options">
+      <div class="option">Schulabschluss nachholen?</div>
+      <div class="option">Deutsch lernen?</div>
+      <div class="option">Noch keinen Plan?</div>
+    </div>
+    <div class="process-hint">
+      ⚠️ Wir leiten Deine Anfrage weiter – die verbindliche Anmeldung erfolgt dann direkt mit der Schule.
+    </div>
+    <div class="cta">Wir helfen Dir! →</div>
+  </div>
+
+</div>
+
+<!-- INNENSEITEN -->
+<p class="row-label" style="margin-top:12px;">INNENSEITEN: Panel 4 links · Panel 5 mitte · Panel 6 rechts</p>
+<div class="flyer-row">
+
+  <!-- PANEL 4: AVdual -->
+  <div class="panel p4">
+    <div class="deco-circle" style="width:100px;height:100px;background:var(--pink);top:-30px;right:-20px;"></div>
+    <span class="badge">Schulabschluss + Praktika</span>
+    <h2>AVdual</h2>
+    <div class="desc">
+      Du hast für das kommende Schuljahr <strong>noch keine feste Zusage</strong>? Kein Job, keine Ausbildung, keine Maßnahme? Dann ist AVdual für Dich!
+    </div>
+    <p style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:6px;">Du hast KEINS davon:</p>
+    <ul class="checklist">
+      <li>Weiterführende Schule</li>
+      <li>Ausbildungsplatz</li>
+      <li>FSJ / BufDi / Bundeswehr</li>
+      <li>Maßnahme Agentur f. Arbeit</li>
+    </ul>
+    <div class="action">
+      📥 Formular + Zeugnis + Lebenslauf + Ausweis per E-Mail:<br>
+      <span style="color:var(--yellow);">meldestelle-bs@stuttgart.de</span>
+    </div>
+  </div>
+
+  <!-- PANEL 5: VABO -->
+  <div class="panel p5">
+    <div class="deco-circle" style="width:130px;height:130px;background:var(--pink);bottom:-40px;right:-40px;"></div>
+    <span class="badge">Deutsch lernen</span>
+    <h2>VABO</h2>
+    <div class="desc">
+      Frisch nach Stuttgart gezogen? Aus einer Vorbereitungsklasse (VKL)? Du möchtest <strong>weiter Deutsch lernen</strong>? VABO ist für Dich!
+    </div>
+    <p style="font-size:13px;font-weight:900;color:var(--dark);margin-bottom:8px;">So geht's:</p>
+    <div class="step">
+      <span class="step-num">1</span>
+      <span>Vermittlungsanfrage als PDF herunterladen</span>
+    </div>
+    <div class="step">
+      <span class="step-num">2</span>
+      <span>Formular + Zeugnis + Lebenslauf + Ausweis einscannen</span>
+    </div>
+    <div class="step">
+      <span class="step-num">3</span>
+      <span>Alles per E-Mail schicken!</span>
+    </div>
+    <div class="url-box">
+      🌐 farbegestaltung.de/meldestelle-berufsbildende-schulen/<br><br>
+      ✉️ meldestelle-bs@stuttgart.de
+    </div>
+  </div>
+
+  <!-- PANEL 6: Jungarbeiterklasse -->
+  <div class="panel p6">
+    <div class="deco-circle" style="width:120px;height:120px;background:white;top:-40px;left:-30px;"></div>
+    <span class="badge">Berufsschulpflicht</span>
+    <h2>Jungar-<br>beiter-<br>klasse</h2>
+    <div class="desc">
+      <strong>Keine Anmeldung möglich!</strong> Diese Pflichtklasse greift automatisch: Wer berufsschulpflichtig ist und keinen Schul- oder Ausbildungsplatz hat, wird hier aufgefangen – auch bei unterjährigem Verlust des Platzes.
+    </div>
+    <div class="support-box">
+      <strong>Was Dich erwartet:</strong>
+      Lehrer*innen und Jugendsozialarbeiter*innen helfen Dir, wieder Fuß zu fassen – und vermitteln Dich weiter zu Ausbildung, Schule oder anderen Angeboten.
+    </div>
+    <div class="cta-big">
+      Niemand fällt<br>durchs Raster. 🤝
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
